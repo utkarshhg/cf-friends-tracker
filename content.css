@@ -1,0 +1,437 @@
+/* ============================================================
+   CF Friends Tracker — Content Script Styles
+   Premium panel design matching Codeforces aesthetic
+   ============================================================ */
+
+/* ── Panel Container ─────────────────────────────────────── */
+#cft-panel {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border: 1px solid rgba(100, 149, 237, 0.25);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(100, 149, 237, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: cft-slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#cft-panel.cft-floating {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 340px;
+  z-index: 99999;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+@keyframes cft-slideIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.cft-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: linear-gradient(90deg, rgba(100, 149, 237, 0.15), rgba(138, 43, 226, 0.1));
+  border-bottom: 1px solid rgba(100, 149, 237, 0.15);
+}
+
+.cft-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cft-logo {
+  font-size: 18px;
+  filter: drop-shadow(0 0 4px rgba(100, 149, 237, 0.5));
+}
+
+.cft-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #e0e6ff;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.cft-refresh-btn {
+  background: rgba(100, 149, 237, 0.12);
+  border: 1px solid rgba(100, 149, 237, 0.25);
+  border-radius: 8px;
+  color: #8ab4f8;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cft-refresh-btn:hover {
+  background: rgba(100, 149, 237, 0.25);
+  border-color: rgba(100, 149, 237, 0.5);
+  transform: rotate(180deg);
+}
+
+/* ── Progress ────────────────────────────────────────────── */
+.cft-progress {
+  padding: 16px;
+}
+
+.cft-progress-bar-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.cft-progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6495ed, #8a2be2, #6495ed);
+  background-size: 200% 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  animation: cft-shimmer 2s ease infinite;
+}
+
+@keyframes cft-shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.cft-progress-text {
+  font-size: 12px;
+  color: #8ab4f8;
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* ── Results Body ────────────────────────────────────────── */
+.cft-body {
+  padding: 0;
+}
+
+.cft-results {
+  padding: 8px;
+}
+
+/* ── Friend Card ─────────────────────────────────────────── */
+.cft-friend-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.cft-friend-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(100, 149, 237, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cft-friend-main {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 12px;
+}
+
+/* ── Avatar ──────────────────────────────────────────────── */
+.cft-friend-avatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.cft-friend-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(100, 149, 237, 0.3);
+}
+
+.cft-verdict-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #1a1a2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Friend Info ─────────────────────────────────────────── */
+.cft-friend-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cft-friend-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.cft-friend-name a {
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.cft-friend-name a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.cft-friend-rating {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.cft-friend-verdict {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.cft-friend-meta {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  gap: 4px;
+}
+
+/* ── View Code Button ────────────────────────────────────── */
+.cft-view-code-btn {
+  background: rgba(100, 149, 237, 0.12);
+  border: 1px solid rgba(100, 149, 237, 0.25);
+  border-radius: 8px;
+  color: #8ab4f8;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cft-view-code-btn:hover {
+  background: rgba(100, 149, 237, 0.25);
+  border-color: #6495ed;
+  transform: scale(1.05);
+}
+
+.cft-view-code-btn.cft-small-btn {
+  padding: 4px 6px;
+}
+
+/* ── Code Container ──────────────────────────────────────── */
+.cft-code-container {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  animation: cft-fadeIn 0.2s ease;
+}
+
+@keyframes cft-fadeIn {
+  from { opacity: 0; max-height: 0; }
+  to { opacity: 1; max-height: 600px; }
+}
+
+.cft-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cft-code-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.cft-copy-btn,
+.cft-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px;
+  text-decoration: none;
+  transition: transform 0.15s;
+}
+
+.cft-copy-btn:hover,
+.cft-link-btn:hover {
+  transform: scale(1.2);
+}
+
+.cft-code-block {
+  margin: 0;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  max-height: 400px;
+  overflow: auto;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #c5d0e6;
+  tab-size: 4;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+.cft-code-block::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.cft-code-block::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.cft-code-block::-webkit-scrollbar-thumb {
+  background: rgba(100, 149, 237, 0.3);
+  border-radius: 3px;
+}
+
+/* ── History ─────────────────────────────────────────────── */
+.cft-history-toggle {
+  padding: 6px 12px;
+  font-size: 11px;
+  color: rgba(138, 180, 248, 0.6);
+  cursor: pointer;
+  transition: color 0.2s;
+  margin-bottom: 8px;
+}
+
+.cft-history-toggle:hover {
+  color: #8ab4f8;
+}
+
+.cft-history {
+  padding: 0 12px 8px;
+}
+
+.cft-history-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.cft-history-item span:first-child {
+  flex: 1;
+}
+
+/* ── Verdict Colors ──────────────────────────────────────── */
+.verdict-ac { color: #4caf50; }
+.verdict-wa { color: #f44336; }
+.verdict-tle { color: #ff9800; }
+.verdict-mle { color: #ff5722; }
+.verdict-re { color: #e91e63; }
+.verdict-ce { color: #9e9e9e; }
+.verdict-other { color: #78909c; }
+
+/* ── CF Rating Colors ────────────────────────────────────── */
+.cf-rank-newbie { color: #808080 !important; }
+.cf-rank-pupil { color: #008000 !important; }
+.cf-rank-specialist { color: #03a89e !important; }
+.cf-rank-expert { color: #0000ff !important; }
+.cf-rank-cm { color: #aa00aa !important; }
+.cf-rank-master { color: #ff8c00 !important; }
+.cf-rank-grandmaster { color: #ff0000 !important; }
+.cf-rank-legendary { color: #ff0000 !important; }
+.cf-rank-legendary::first-letter { color: #000 !important; }
+
+/* ── Empty & Error States ────────────────────────────────── */
+.cft-empty,
+.cft-error {
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.cft-empty-icon,
+.cft-error-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.cft-empty-text,
+.cft-error-text {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+}
+
+.cft-retry-btn {
+  margin-top: 12px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #6495ed, #8a2be2);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cft-retry-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(100, 149, 237, 0.4);
+}
+
+/* ── Summary Footer ──────────────────────────────────────── */
+.cft-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+}
+
+.cft-summary-item {
+  font-weight: 600;
+}
+
+.cft-summary-solved { color: #4caf50; }
+.cft-summary-attempted { color: #ff9800; }
+.cft-summary-sep { color: rgba(255, 255, 255, 0.2); }

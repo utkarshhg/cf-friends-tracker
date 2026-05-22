@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CF Friends Tracker — Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="popup-header">
+      <span class="popup-logo">👥</span>
+      <div>
+        <h1 class="popup-title">CF Friends Tracker</h1>
+        <p class="popup-subtitle">See who solved it first</p>
+      </div>
+    </div>
+
+    <div class="popup-status" id="status-bar">
+      <span class="status-dot" id="status-dot"></span>
+      <span class="status-text" id="status-text">Not configured</span>
+    </div>
+
+    <form id="settings-form" autocomplete="off">
+      <div class="form-group">
+        <label for="cfHandle">Your Handle</label>
+        <input type="text" id="cfHandle" placeholder="e.g. tourist" spellcheck="false">
+      </div>
+
+      <div class="form-group">
+        <label for="apiKey">API Key</label>
+        <input type="text" id="apiKey" placeholder="From codeforces.com/settings/api" spellcheck="false">
+      </div>
+
+      <div class="form-group">
+        <label for="apiSecret">API Secret</label>
+        <input type="password" id="apiSecret" placeholder="••••••••••••">
+        <button type="button" class="toggle-visibility" id="toggleSecret" title="Show/hide">👁️</button>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="saveBtn">
+          <span class="btn-icon">💾</span> Save Settings
+        </button>
+        <button type="button" class="btn btn-secondary" id="testBtn">
+          <span class="btn-icon">🔌</span> Test Connection
+        </button>
+      </div>
+    </form>
+
+    <div class="popup-footer">
+      <button class="btn btn-ghost" id="clearCacheBtn">
+        <span class="btn-icon">🗑️</span> Clear Cache
+      </button>
+      <a href="https://codeforces.com/settings/api" target="_blank" class="footer-link">
+        Get API Key →
+      </a>
+    </div>
+
+    <div class="popup-message" id="message" style="display:none;"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
