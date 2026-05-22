@@ -41,7 +41,7 @@ When you visit a Codeforces problem page, a panel appears in the sidebar showing
 
 ### Step 1: Download
 ```bash
-git clone https://github.com/YOUR_USERNAME/cf-friends-tracker.git
+git clone https://github.com/utkarshhg/cf-friends-tracker.git
 ```
 Or click **Code → Download ZIP** and extract it.
 
